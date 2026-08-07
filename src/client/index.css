@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+/* Fonts (Oswald + Manrope) are loaded via <link> in index.html — a CSS
+   @import here would be hoisted after Tailwind's expanded output. */
+
+@source "./";
+
+@theme {
+  /* --- Palette: warm charcoal / coral night training --- */
+  --color-paper: #171918;
+  --color-mist: #0d0f0e;
+  --color-mist-2: #303531;
+  --color-ink: #f4f1e8;
+  --color-ink-2: #d2d0c8;
+  --color-ink-3: #a2a69f;
+
+  --color-flame-50: #2b1716;
+  --color-flame-100: #44201e;
+  --color-flame-200: #6d2b27;
+  --color-flame-300: #a83a34;
+  --color-flame-400: #db4b43;
+  --color-flame-500: #ff5a4f;
+  --color-flame-600: #e94840;
+  --color-flame-700: #c93631;
+
+  /* calm progress / supportive states */
+  --color-steady-50: #192416;
+  --color-steady-100: #26391d;
+  --color-steady-300: #79a84f;
+  --color-steady-500: #b8f26a;
+  --color-steady-700: #82b842;
+
+  /* macro accents */
+  --color-protein: #ff6b61;
+  --color-carb: #f3b44b;
+  --color-fat: #82a8c5;
+
+  /* --- Typography --- */
+  --font-display: 'Oswald', system-ui, sans-serif;
+  --font-sans: 'Manrope', system-ui, sans-serif;
+
+  /* --- Radius --- */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+  --radius-2xl: 28px;
+
+  /* --- Motion --- */
+  --animate-fade-in: fade-in 0.35s ease-out both;
+  --animate-slide-up: slide-up 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-slide-down: slide-down 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-pop: pop 0.28s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  --animate-bar: bar 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pop {
+  from { opacity: 0; transform: scale(0.94); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes bar {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* Base UI: establish a stacking context at the root so portalled
+   popups (Dialog, Select, Menu, Tooltip) layer above page content. */
+html {
+  isolation: isolate;
+  -webkit-tap-highlight-color: transparent;
+  color-scheme: dark;
+}
+
+body {
+  position: relative;
+  background-color: var(--color-mist);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.01em;
+}
+
+/* Numeric readouts (calories, macros) */
+.tabnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Diagonal red hatch used for hero / header accents */
+.hatch {
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(255, 90, 79, 0.16) 0px,
+    rgba(255, 90, 79, 0.16) 2px,
+    transparent 2px,
+    transparent 9px
+  );
+}
+
+.formetra-grid {
+  background-image:
+    linear-gradient(rgba(184, 242, 106, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184, 242, 106, 0.035) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+::selection {
+  background: var(--color-flame-500);
+  color: var(--color-mist);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Hide number input spinners for the gram amount fields */
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}

@@ -1,0 +1,22 @@
+{
+  "name": "FORMETRA — навигатор питания",
+  "short_name": "FORMETRA",
+  "description": "Персональный дневник калорий и БЖУ с понятными подсказками и спокойным прогрессом.",
+  "lang": "ru",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0d0f0e",
+  "theme_color": "#0d0f0e",
+  "categories": ["health", "fitness", "lifestyle"],
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Открыть дневник", "short_name": "Дневник", "url": "/" },
+    { "name": "Записать вес", "short_name": "Вес", "url": "/progress" }
+  ]
+}

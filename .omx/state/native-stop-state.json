@@ -1,0 +1,14 @@
+{
+  "sessions": {
+    "019fdcd3-bbc3-7390-b080-5c00e92aebd6": {
+      "ordinary_no_progress_guard": {
+        "fingerprint": "ordinary|для быстрого запуска в демо-режиме: ```bash cd \"/users/user/desktop/code projects/macro fit/kadr-ai-studio\" pnpm install pnpm dev ``` откройте: ```text http://localhost:5174 ``` на странице входа нажмите «открыть демо-кабинет». supabase и openrouter для демо не нужны. для полноценной работы скопируйте настройки: ```bash cp .env.example .env.local ``` заполните в `.env.local`: ```env vite_supabase_url=https://ваш-проект.supabase.co vite_supabase_publishable_key=sb_publishable_xxx ``` дальнейшая настройка supabase и openrouter описана в [readme.md](</users/user/desktop/code projects/macro fit/kadr-ai-studio/readme.md>). остановить сервер можно сочетанием `ctrl+c`.",
+        "first_seen_at": "2026-08-07T16:04:19.487Z",
+        "last_seen_at": "2026-08-07T16:04:19.487Z",
+        "repeat_count": 1,
+        "last_turn_id": "019fdcf7-c67e-7451-a8c1-5ef34aaaa0bf",
+        "last_thread_id": null
+      }
+    }
+  }
+}
