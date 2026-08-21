@@ -64,3 +64,64 @@ test('bcrypt is declared as a direct runtime dependency', async () => {
   assert.equal(packageJson.dependencies?.bcrypt, '^6.0.0');
   assert.equal(packageLock.packages?.['']?.dependencies?.bcrypt, '^6.0.0');
 });
+
+test('runtime commands use the pinned package manager and Modelence production server', async () => {
+  const packageJson = JSON.parse(await source('package.json')) as {
+    scripts?: Record<string, string>;
+    packageManager?: string;
+    engines?: Record<string, string>;
+  };
+
+  assert.equal(packageJson.scripts?.start, 'modelence start');
+  assert.equal(packageJson.scripts?.['db:local'], 'mongod --dbpath .local/mongodb-data --bind_ip 127.0.0.1 --port 27017');
+  assert.equal(packageJson.scripts?.['dev:mobile'], 'pnpm --dir mobile start');
+  assert.equal(packageJson.packageManager, 'pnpm@11.9.0');
+  assert.equal(packageJson.engines?.node, '>=20');
+});
+
+test('root typecheck ignores nested standalone app templates', async () => {
+  const tsconfig = await source('tsconfig.json');
+
+  assert.match(tsconfig, /"my-app"/);
+});
+
+test('textarea follows FORMETRA dark form tokens', async () => {
+  const textarea = await source('src/client/components/ui/Textarea.tsx');
+
+  assert.match(textarea, /rounded-xl border border-mist-2 bg-paper/);
+  assert.match(textarea, /text-ink/);
+  assert.match(textarea, /placeholder:text-ink-3/);
+  assert.match(textarea, /focus-visible:ring-flame-500/);
+  assert.doesNotMatch(textarea, /gray-|blue-|bg-white/);
+});
+
+test('Vite separates shared runtime dependencies from route chunks', async () => {
+  const config = await source('vite.config.ts');
+
+  assert.match(config, /manualChunks\(id\)/);
+  assert.match(config, /react-vendor/);
+  assert.match(config, /data-vendor/);
+  assert.match(config, /modelence-vendor/);
+  assert.match(config, /ui-vendor/);
+  assert.match(config, /return 'icons'/);
+});
+
+test('initial app shell avoids unused tooltip and form-control dependencies', async () => {
+  const [entry, router] = await Promise.all([
+    source('src/client/index.tsx'),
+    source('src/client/router.tsx'),
+  ]);
+
+  assert.doesNotMatch(entry, /TooltipProvider/);
+  assert.doesNotMatch(router, /components\/ui\/Button/);
+  assert.match(router, /type="button"/);
+  assert.match(router, /Проверяем…/);
+});
+
+test('global loading state uses an accessible CSS spinner without loading icon packages', async () => {
+  const spinner = await source('src/client/components/LoadingSpinner.tsx');
+
+  assert.match(spinner, /role="status"/);
+  assert.match(spinner, /animate-spin rounded-full border-2/);
+  assert.doesNotMatch(spinner, /^import\s/m);
+});

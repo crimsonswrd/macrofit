@@ -5,7 +5,6 @@ import { useQuery } from '@tanstack/react-query';
 import { modelenceQuery } from '@modelence/react-query';
 import LoadingSpinner from '@/client/components/LoadingSpinner';
 import { resolveOnboardingAccess, type OnboardingState } from '@/client/lib/profile';
-import { Button } from '@/client/components/ui/Button';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 
@@ -71,9 +70,14 @@ function OnboardingGate() {
         <div role="alert" className="max-w-md rounded-2xl border border-flame-500/30 bg-paper p-6 text-center">
           <h1 className="font-display text-2xl font-bold uppercase">Не удалось проверить настройку профиля</h1>
           <p className="mt-2 text-sm text-ink-3">Мы не открываем персональные разделы без актуального состояния анкеты. Повторите проверку.</p>
-          <Button className="mt-5" color="primary" loading={onboardingQuery.isFetching} onClick={() => onboardingQuery.refetch()}>
-            Повторить
-          </Button>
+          <button
+            type="button"
+            className="mt-5 min-h-11 rounded-xl border border-flame-500 bg-flame-500 px-4 py-2 text-sm font-bold text-mist transition-colors hover:bg-flame-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-flame-500 focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60"
+            disabled={onboardingQuery.isFetching}
+            onClick={() => onboardingQuery.refetch()}
+          >
+            {onboardingQuery.isFetching ? 'Проверяем…' : 'Повторить'}
+          </button>
         </div>
       </main>
     );

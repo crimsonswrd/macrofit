@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "build": "modelence build",
-    "start": "node .modelence/build/app.mjs",
+    "start": "modelence start",
     "dev": "modelence dev",
-    "dev:mobile": "cd mobile && npm run start",
+    "db:local": "mongod --dbpath .local/mongodb-data --bind_ip 127.0.0.1 --port 27017",
+    "dev:mobile": "pnpm --dir mobile start",
     "postinstall": "node scripts/postinstall.mjs",
     "test": "node --import tsx --test tests/*.test.ts",
     "typecheck": "tsc --noEmit"
@@ -41,5 +42,9 @@
   },
   "overrides": {
     "cookie": "^0.7.2"
+  },
+  "packageManager": "pnpm@11.9.0",
+  "engines": {
+    "node": ">=20"
   }
 }
