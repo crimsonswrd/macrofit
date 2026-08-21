@@ -76,7 +76,7 @@ test('runtime commands use the pinned package manager and Modelence production s
   assert.equal(packageJson.scripts?.['db:local'], 'mongod --dbpath .local/mongodb-data --bind_ip 127.0.0.1 --port 27017');
   assert.equal(packageJson.scripts?.['dev:mobile'], 'pnpm --dir mobile start');
   assert.equal(packageJson.packageManager, 'pnpm@11.9.0');
-  assert.equal(packageJson.engines?.node, '>=20');
+  assert.equal(packageJson.engines?.node, '>=22.13');
 });
 
 test('root typecheck ignores nested standalone app templates', async () => {
