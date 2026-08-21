@@ -335,9 +335,9 @@ function FoodRow({ food, onSelect }: { food: Food; onSelect: () => void }) {
       onClick={onSelect}
       className="flex min-h-11 w-full items-center justify-between gap-3 border-b border-mist-2 px-5 py-3 text-left transition-colors duration-150 last:border-b-0 hover:bg-flame-50"
     >
-      <div className="min-w-0">
+      <div className="min-w-0 flex-1">
         <p className="truncate text-sm font-semibold text-ink">{food.name}</p>
-        <p className="tabnum mt-0.5 text-xs text-ink-3">
+        <p className="tabnum mt-0.5 truncate text-xs text-ink-3">
           Б {fmt(food.protein, 1)} · У {fmt(food.carbs, 1)} · Ж {fmt(food.fat, 1)} / 100 {food.unit}
         </p>
       </div>

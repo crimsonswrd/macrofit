@@ -23,7 +23,7 @@ export function SubmissionStatusBadge({ status }: { status: SubmissionStatus }) 
 
 export function FoodSourceBadge({ source }: { source: FoodSource }) {
   return (
-    <span className="inline-flex rounded-full border border-mist-2 bg-mist px-2 py-0.5 text-[11px] font-semibold text-ink-3">
+    <span className="inline-flex shrink-0 whitespace-nowrap rounded-full border border-mist-2 bg-mist px-2 py-0.5 text-[11px] font-semibold text-ink-3">
       {FOOD_SOURCE_LABELS[source]}
     </span>
   );

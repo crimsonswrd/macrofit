@@ -151,8 +151,8 @@ function Diary() {
                   style={{ animationDelay: `${index * 60}ms` }}
                 >
                   <header className="flex items-center justify-between gap-2 border-b border-mist-2 px-4 py-3">
-                    <div className="flex items-baseline gap-2">
-                      <h2 className="font-display text-lg font-semibold uppercase tracking-tight">
+                    <div className="flex min-w-0 items-baseline gap-2">
+                      <h2 className="min-w-0 truncate font-display text-lg font-semibold uppercase tracking-tight">
                         {mealDef.label}
                       </h2>
                       <span className="tabnum text-sm font-semibold text-ink-3">

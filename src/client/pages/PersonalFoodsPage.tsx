@@ -151,11 +151,11 @@ export default function PersonalFoodsPage() {
               <li key={food.id} className="rounded-2xl border border-mist-2 bg-paper p-4">
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h2 className="truncate font-bold text-ink">{food.name}</h2>
+                    <div className="flex min-w-0 items-center gap-2">
+                      <h2 className="min-w-0 truncate font-bold text-ink">{food.name}</h2>
                       <FoodSourceBadge source="personal" />
                     </div>
-                    <p className="mt-1 text-xs text-ink-3">{formatFoodMeta(food)}</p>
+                    <p className="mt-1 truncate text-xs text-ink-3">{formatFoodMeta(food)}</p>
                   </div>
                   <p className="tabnum shrink-0 font-display text-xl font-bold text-flame-500">{fmt(food.calories)}</p>
                 </div>

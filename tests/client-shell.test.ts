@@ -95,6 +95,27 @@ test('textarea follows FORMETRA dark form tokens', async () => {
   assert.doesNotMatch(textarea, /gray-|blue-|bg-white/);
 });
 
+test('food search rows and dialogs constrain long text on small screens', async () => {
+  const [dialog, addFood, foods, personalFoods, home, input, badge] = await Promise.all([
+    source('src/client/components/ui/Dialog.tsx'),
+    source('src/client/components/nutrition/AddFoodDialog.tsx'),
+    source('src/client/pages/FoodsPage.tsx'),
+    source('src/client/pages/PersonalFoodsPage.tsx'),
+    source('src/client/pages/HomePage.tsx'),
+    source('src/client/components/ui/Input.tsx'),
+    source('src/client/components/foods/FoodStatusBadge.tsx'),
+  ]);
+
+  assert.match(dialog, /w-\[calc\(100%-2rem\)\] max-w-lg/);
+  assert.match(input, /flex min-w-0 w-full/);
+  assert.match(badge, /shrink-0 whitespace-nowrap/);
+  assert.match(addFood, /min-w-0 flex-1/);
+  assert.match(foods, /grid-cols-\[minmax\(0,1fr\)_auto\]/);
+  assert.match(foods, /min-w-0 truncate text-sm font-semibold text-ink/);
+  assert.match(personalFoods, /min-w-0 truncate font-bold text-ink/);
+  assert.match(home, /min-w-0 truncate font-display text-lg/);
+});
+
 test('Vite separates shared runtime dependencies from route chunks', async () => {
   const config = await source('vite.config.ts');
 

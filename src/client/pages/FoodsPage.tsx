@@ -125,14 +125,14 @@ export default function FoodsPage() {
             {foods.map((food) => (
               <li
                 key={`${food.source}-${food.id}`}
-                className="grid grid-cols-[1fr_auto] items-center gap-2 border-b border-mist-2 px-4 py-3 transition-colors duration-150 last:border-b-0 hover:bg-flame-50 sm:grid-cols-[1fr_repeat(4,72px)]"
+                className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-2 border-b border-mist-2 px-4 py-3 transition-colors duration-150 last:border-b-0 hover:bg-flame-50 sm:grid-cols-[minmax(0,1fr)_repeat(4,72px)]"
               >
                 <div className="min-w-0">
                   <div className="flex min-w-0 items-center gap-2">
-                    <p className="truncate text-sm font-semibold text-ink">{food.name}</p>
+                    <p className="min-w-0 truncate text-sm font-semibold text-ink">{food.name}</p>
                     <FoodSourceBadge source={food.source} />
                   </div>
-                  <p className="mt-0.5 text-xs text-ink-3">
+                  <p className="mt-0.5 truncate text-xs text-ink-3">
                     {[food.brand, food.category, `на 100 ${food.unit}`].filter(Boolean).join(' · ')}
                   </p>
                   {isOpenFoodFacts(food) && <OpenFoodFactsAttribution className="mt-1" />}
